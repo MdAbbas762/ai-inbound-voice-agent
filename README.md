@@ -529,3 +529,82 @@ Validation covered:
 Detailed test coverage is documented in:
 
 **[`docs/testing-and-validation.md`](docs/testing-and-validation.md)**
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technology |
+|---|---|
+| AI Voice Platform | Vapi |
+| Language Model | OpenAI GPT-5 |
+| Speech Recognition | Deepgram Nova 3 |
+| Voice Synthesis | ElevenLabs |
+| CRM | GoHighLevel |
+| Calendar & Appointments | GoHighLevel Calendars |
+| Workflow Automation | GoHighLevel Workflows |
+| Telephony | GoHighLevel / Twilio |
+| Integration | REST APIs |
+| Data Exchange | JSON / HTTP |
+
+---
+
+## 🏢 Project Context & My Contribution
+
+This was a **real client project for Affordable Modular Buildings**, assigned during my internship at **DrivenStack**.
+
+The project was assigned to a two-person team.
+
+My teammate implemented the Vapi **`check_calendar_availability` Code Tool**, which retrieves real-time GoHighLevel availability for Phone Consultation and Factory Tour bookings.
+
+I was responsible for the remaining implementation documented in this repository, including:
+
+- configuring the Vapi AI receptionist,
+- designing and refining the system prompt,
+- implementing the caller-specific conversation flows,
+- implementing required information collection,
+- creating and configuring the remaining Vapi tools,
+- integrating Vapi with GoHighLevel through REST APIs,
+- implementing contact search, creation, and update logic,
+- mapping caller information into GoHighLevel fields,
+- implementing appointment booking,
+- integrating Phone Consultation and Factory Tour bookings,
+- configuring the GoHighLevel SMS confirmation workflow,
+- configuring the inbound call-forwarding workflow,
+- implementing existing-client transfer and handoff logic,
+- testing the different caller journeys,
+- validating API requests and CRM records,
+- debugging workflow and data-mapping issues,
+- and testing the overall end-to-end system.
+
+The workflows, configurations, and client implementation shown in this repository were created as part of the work delivered through **DrivenStack**. This repository is a portfolio case study documenting my individual technical contribution to that project and is not intended to claim ownership of the client system or DrivenStack's project assets.
+
+---
+
+## 🔒 Test Data & Privacy
+
+All customer information visible in the screenshots is **dummy test data created by me for development and validation purposes**.
+
+The test records were used to verify:
+
+- CRM contact creation and updates,
+- custom-field mapping,
+- appointment creation,
+- workflow execution,
+- SMS confirmation,
+- and human handoff.
+
+No real customer information is included in this repository.
+
+The repository also excludes:
+
+- API keys,
+- access tokens,
+- authentication credentials,
+- webhook secrets,
+- private client documents,
+- production secrets,
+- real customer records,
+- and sensitive operational information.
+
+The purpose of this repository is to document the **architecture, implementation, integrations, workflows, testing, and technical contribution** behind the project without exposing confidential client information.
