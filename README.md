@@ -478,3 +478,54 @@ The `transfer_existing_client` tool then performs the handoff.
 *Controlled test showing successful tool execution, contextual handoff information, and transfer to human staff.*
 
 This means the person receiving the call already has useful context instead of requiring the caller to repeat the entire enquiry.
+
+---
+
+## 🛡️ Guardrails & Responsible Response Handling
+
+The assistant was designed to be useful without making unsupported commitments or inventing information.
+
+It must not:
+
+- guarantee council approval,
+- confirm exact pricing without a formal quote,
+- promise construction, completion, or delivery dates,
+- provide legal, tax, financial, or investment advice,
+- guarantee rental returns,
+- guarantee property-value growth,
+- confirm property suitability without assessment,
+- invent specifications or inclusions,
+- provide unconfirmed project updates,
+- or make commitments on behalf of a Project Manager.
+
+When a question cannot be answered safely, the assistant collects the relevant information and directs the enquiry toward the appropriate team member.
+
+The conversation style also follows AMB's preferred communication approach: **clear, practical, specific, customer-focused, and transparent without exaggerated marketing language.**
+
+---
+
+## 🧪 Testing & Validation
+
+The system was tested across its main caller journeys and operational actions.
+
+Validation covered:
+
+- residential enquiry handling,
+- commercial enquiry handling,
+- existing-client routing,
+- factory-tour handling,
+- contact lookup,
+- contact creation,
+- contact updates,
+- CRM custom-field mapping,
+- calendar availability,
+- Phone Consultation booking,
+- Factory Tour booking,
+- SMS workflow execution,
+- inbound call forwarding,
+- human transfer,
+- and response guardrails.
+
+Detailed test coverage is documented in:
+
+**[`docs/testing-and-validation.md`](docs/testing-and-validation.md)**
