@@ -101,3 +101,228 @@ The system combines telephony, conversational AI, structured tool execution, CRM
 </p>
 
 The architecture follows a human-first approach. Calls are initially routed to staff, while unanswered calls move into the Vapi AI receptionist. From there, the assistant identifies the caller type and follows the appropriate business path.
+
+## 🧭 Caller Journeys
+
+### 🏠 1. New Residential Customer
+
+AMB's preferred residential process begins by checking whether the caller has already downloaded and reviewed the catalogue.
+
+```text
+Residential Caller
+        ↓
+Catalogue Reviewed?
+     ↙       ↘
+   No         Yes
+    ↓          ↓
+Guide caller   Continue
+to catalogue   qualification
+        ↓
+Collect Residential Project Details
+        ↓
+Find / Create / Update CRM Contact
+        ↓
+Ready for Phone Consultation?
+        ↓
+Check Calendar Availability
+        ↓
+Book Phone Consultation
+        ↓
+Trigger SMS Confirmation
+```
+
+Residential qualification can include:
+
+- property location,
+- property ownership,
+- intended building use,
+- approximate building size,
+- bedrooms and bathrooms,
+- kitchen, laundry, living, storage, or accessibility requirements,
+- standard or customised layout preference,
+- approximate budget,
+- finance requirements,
+- preferred project timeframe,
+- site restrictions,
+- catalogue status,
+- and readiness for a sales consultation.
+
+If the catalogue has not yet been reviewed, the assistant guides the caller toward that step before progressing toward a consultation.
+
+---
+
+### 🏢 2. Commercial Customer
+
+Commercial customers follow a separate path focused on collecting business and project requirements.
+
+```text
+Commercial Caller
+        ↓
+Collect Organisation Details
+        ↓
+Collect Project Requirements
+        ↓
+Find / Create / Update CRM Contact
+        ↓
+Send Structured Commercial Enquiry
+        ↓
+Route to Sales Team
+```
+
+The information collected can include:
+
+- organisation name,
+- contact person,
+- project or delivery location,
+- intended building use,
+- required building size,
+- rooms, amenities, or fit-out requirements,
+- stock or custom building preference,
+- delivery or completion timeframe,
+- site access requirements,
+- electrical, plumbing, or accessibility requirements,
+- and available plans, specifications, or scope documents.
+
+The completed enquiry is then routed toward the relevant sales process.
+
+---
+
+### 👤 3. Existing Client
+
+Existing clients are handled differently because project-specific information should not be guessed or provided without confirmation.
+
+```text
+Existing Client
+        ↓
+Find Existing Contact
+        ↓
+Collect Project / Job Details
+        ↓
+Understand Reason for Call
+        ↓
+Transfer Required?
+     ↙       ↘
+   Yes        No
+    ↓          ↓
+Transfer to   Record message /
+Human Staff   callback details
+```
+
+The assistant can collect:
+
+- client name,
+- phone and email,
+- project address,
+- project or job number,
+- Project Manager name,
+- reason for the call,
+- urgency,
+- and preferred callback time.
+
+If the caller needs project-specific assistance, the assistant can transfer the call or collect information for follow-up rather than inventing an update.
+
+---
+
+### 🏭 4. Factory Tour Enquiry
+
+Factory-tour callers follow a dedicated booking flow.
+
+```text
+Factory Tour Enquiry
+        ↓
+Collect Visitor Details
+        ↓
+Find / Create / Update CRM Contact
+        ↓
+Check Calendar Availability
+        ↓
+Book Factory Tour
+        ↓
+Trigger SMS Confirmation
+```
+
+The assistant can collect:
+
+- full name,
+- phone number,
+- email,
+- residential or commercial interest,
+- preferred date and time,
+- number of attendees,
+- building type of interest,
+- accessibility requirements,
+- and any specific features the visitor wants to discuss.
+
+---
+
+## 🔧 Vapi AI Agent & Tool Architecture
+
+Vapi acts as the conversational and tool-execution layer of the system.
+
+### Voice AI Stack
+
+| Component | Technology | Purpose |
+|---|---|---|
+| Speech-to-Text | Deepgram Nova 3 | Transcribes caller speech |
+| Language Model | OpenAI GPT-5 | Handles reasoning, conversation, and tool decisions |
+| Text-to-Speech | ElevenLabs | Generates the assistant's spoken responses |
+| Agent Platform | Vapi | Manages calls, prompting, tools, and conversation flow |
+
+### Assistant Configuration
+
+The Vapi assistant contains the main conversational logic for:
+
+- identifying caller intent,
+- selecting the correct customer journey,
+- collecting required information,
+- answering approved business questions,
+- handling appointment requests,
+- using tools only when appropriate,
+- escalating when human involvement is required,
+- and following client-defined communication rules.
+
+<p align="center">
+  <img src="assets/screenshots/01-vapi-assistant-overview.png" alt="Vapi AI Assistant Configuration" width="95%">
+</p>
+
+*Vapi assistant configuration showing the production voice stack and system instructions.*
+
+### Conversation Logic
+
+The system prompt controls how the assistant handles real conversations.
+
+Important rules include:
+
+- understand the caller's needs before choosing a path,
+- do not assume every caller wants a residential consultation,
+- ask one relevant question at a time,
+- do not repeat information already provided,
+- complete the required information collection before important actions,
+- avoid pressuring callers into booking,
+- and escalate questions that require confirmation.
+
+<p align="center">
+  <img src="assets/screenshots/02-vapi-conversation-logic.png" alt="Vapi Conversation Logic and Business Rules" width="95%">
+</p>
+
+*Caller-handling rules and required-information logic used by the AI receptionist.*
+
+### Structured Tools
+
+The assistant uses Vapi tools to perform actions outside the conversation.
+
+| Tool | Purpose |
+|---|---|
+| `get_contact` | Search GoHighLevel for an existing contact |
+| `create_contact` | Create a new CRM contact |
+| `update_contact` | Update an existing CRM contact |
+| `check_calendar_availability` | Retrieve real-time availability from GoHighLevel |
+| `appointment_booking` | Create a Phone Consultation or Factory Tour appointment |
+| `transfer_existing_client` | Transfer an existing client to human staff |
+| `send_commercial_enquiry` | Route a completed commercial enquiry |
+
+<p align="center">
+  <img src="assets/screenshots/03-vapi-tools-overview.png" alt="Vapi Tools Connected to the AI Assistant" width="95%">
+</p>
+
+*Production tools connected to the assistant for CRM actions, booking, routing, and transfer.*
