@@ -326,3 +326,155 @@ The assistant uses Vapi tools to perform actions outside the conversation.
 </p>
 
 *Production tools connected to the assistant for CRM actions, booking, routing, and transfer.*
+
+---
+
+## 📅 Appointment & Calendar Automation
+
+The system supports two appointment types:
+
+- **Phone Consultation**
+- **Factory Tour**
+
+Before an appointment is created, real-time availability is checked from the relevant GoHighLevel calendar.
+
+```text
+Customer Requests Booking
+        ↓
+Check Calendar Availability
+        ↓
+Return Available Slot
+        ↓
+Customer Confirms
+        ↓
+Create Appointment in GoHighLevel
+        ↓
+Booking Succeeds
+        ↓
+Trigger Confirmation Workflow
+```
+
+The booking tool sends a structured request to GoHighLevel using the confirmed contact, calendar, date, and time.
+
+<p align="center">
+  <img src="assets/screenshots/04-vapi-appointment-booking-tool.png" alt="Vapi Appointment Booking API Tool" width="95%">
+</p>
+
+*API-backed Vapi tool used to create confirmed appointments inside GoHighLevel.*
+
+A successful booking is then stored directly in the appropriate GoHighLevel calendar.
+
+<p align="center">
+  <img src="assets/screenshots/06-ghl-appointment-booking.png" alt="Confirmed Appointment Created in GoHighLevel" width="95%">
+</p>
+
+*Test booking successfully created and confirmed in the GoHighLevel calendar.*
+
+---
+
+## 🔄 GoHighLevel CRM & Workflow Automation
+
+GoHighLevel acts as the main CRM, calendar, and workflow automation platform.
+
+### Structured CRM Data
+
+Information collected during the conversation is mapped into structured CRM fields instead of remaining only inside the voice transcript.
+
+This can include:
+
+- customer information,
+- project location,
+- project timeframe,
+- building requirements,
+- catalogue status,
+- consultation readiness,
+- and other caller-specific fields.
+
+<p align="center">
+  <img src="assets/screenshots/05-ghl-structured-crm-data.png" alt="Structured Customer and Project Data Stored in GoHighLevel" width="95%">
+</p>
+
+*Structured test data captured from the voice conversation and stored in GoHighLevel custom fields.*
+
+### Contact Handling
+
+Before creating a new contact, the assistant can search GoHighLevel using the caller's confirmed information.
+
+Depending on the result, the system can:
+
+- use an existing contact,
+- update an existing record,
+- or create a new contact.
+
+This keeps the CRM data connected to the correct customer.
+
+### SMS Confirmation Workflow
+
+Successful appointment creation triggers a GoHighLevel workflow that sends the customer a confirmation SMS.
+
+```text
+Appointment Booked
+        ↓
+GHL Workflow Triggered
+        ↓
+Contact Information Loaded
+        ↓
+Confirmation SMS Sent
+```
+
+<p align="center">
+  <img src="assets/screenshots/07-ghl-sms-confirmation-workflow.png" alt="GoHighLevel Appointment Confirmation SMS Workflow" width="95%">
+</p>
+
+*GoHighLevel workflow used to send an automatic SMS after a successful booking.*
+
+### Inbound Call Forwarding
+
+GoHighLevel also handles the initial inbound call-routing process.
+
+```text
+Incoming Call
+      ↓
+Ring Human Staff
+      ↓
+Answered?
+   ↙       ↘
+ Yes        No
+  ↓          ↓
+Human       Forward to
+Handles      Vapi AI
+Call         Receptionist
+```
+
+<p align="center">
+  <img src="assets/screenshots/08-ghl-call-forwarding-workflow.png" alt="GoHighLevel Call Forwarding Workflow" width="95%">
+</p>
+
+*Human-first call-routing workflow that forwards unanswered calls to the AI receptionist.*
+
+---
+
+## 🤝 Human Handoff & Escalation
+
+The AI is designed to involve human staff whenever the situation requires direct human assistance.
+
+Existing clients are a key example.
+
+Before initiating a transfer, the assistant can collect relevant context such as:
+
+- caller identity,
+- project or job number,
+- project address,
+- reason for the call,
+- urgency,
+- and callback preference.
+
+The `transfer_existing_client` tool then performs the handoff.
+
+<p align="center">
+  <img src="assets/screenshots/09-human-handoff.png" alt="Successful Existing Client Human Handoff" width="95%">
+</p>
+
+*Controlled test showing successful tool execution, contextual handoff information, and transfer to human staff.*
+
+This means the person receiving the call already has useful context instead of requiring the caller to repeat the entire enquiry.
