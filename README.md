@@ -4,12 +4,12 @@ An inbound AI voice receptionist built for **Affordable Modular Buildings (AMB)*
 
 The system connects **Vapi**, **GoHighLevel**, **Twilio**, **OpenAI**, **Deepgram**, **ElevenLabs**, and REST APIs into a complete inbound customer-handling workflow.
 
-![Vapi](https://img.shields.io/badge/Vapi-Voice_AI-111827?style=flat-square)
-![GoHighLevel](https://img.shields.io/badge/GoHighLevel-CRM_%26_Automation-2563EB?style=flat-square)
-![OpenAI](https://img.shields.io/badge/OpenAI-GPT--5-111827?style=flat-square)
-![Deepgram](https://img.shields.io/badge/Deepgram-Nova_3-2563EB?style=flat-square)
-![ElevenLabs](https://img.shields.io/badge/ElevenLabs-Voice_AI-111827?style=flat-square)
-![REST API](https://img.shields.io/badge/REST-API-2563EB?style=flat-square)
+![Vapi](https://img.shields.io/badge/Vapi-Voice%20AI-111827?style=flat-square)
+![GoHighLevel](https://img.shields.io/badge/GoHighLevel-CRM%20%26%20Automation-1f2937?style=flat-square)
+![OpenAI GPT-5](https://img.shields.io/badge/OpenAI-GPT--5-0f766e?style=flat-square&logo=openai&logoColor=white)
+![Deepgram Nova-3](https://img.shields.io/badge/Deepgram-Nova--3-2563eb?style=flat-square)
+![ElevenLabs](https://img.shields.io/badge/ElevenLabs-Voice%20AI-52525b?style=flat-square)
+![REST API](https://img.shields.io/badge/REST-API-475569?style=flat-square)
 
 ---
 
