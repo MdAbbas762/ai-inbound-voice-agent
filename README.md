@@ -71,3 +71,33 @@ The assistant then:
 7. Gives the customer a clear next step.
 
 This connects the conversation directly with real business operations instead of leaving the information only inside a call transcript.
+
+## ✨ Key Features
+
+- AI-powered inbound call handling
+- Human-first call routing with AI fallback
+- Caller intent identification
+- Four customer-specific conversation paths
+- Structured lead and project qualification
+- GoHighLevel contact search, creation, and updates
+- Custom-field mapping
+- Real-time calendar availability checking
+- Phone Consultation booking
+- Factory Tour booking
+- Automated SMS confirmation
+- Commercial enquiry routing
+- Existing-client human handoff
+- Approved FAQ handling
+- Production guardrails for sensitive or unconfirmed information
+
+---
+
+## 🏗️ System Architecture
+
+The system combines telephony, conversational AI, structured tool execution, CRM operations, appointment handling, workflow automation, and human escalation.
+
+<p align="center">
+  <img src="assets/architecture/system-architecture.png" alt="AMB AI Voice Receptionist Workflow and System Architecture" width="100%">
+</p>
+
+The architecture follows a human-first approach. Calls are initially routed to staff, while unanswered calls move into the Vapi AI receptionist. From there, the assistant identifies the caller type and follows the appropriate business path.
